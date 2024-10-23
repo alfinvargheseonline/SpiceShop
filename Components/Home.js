@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { Feather, MaterialIcons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
-const DashboardScreen = () => {
+const IntegratedDashboard = () => {
   const harvestingData = [
     { product: 'Cardamom', quantity: '3260Kg' },
     { product: 'Pepper', quantity: '320Kg' },
@@ -20,7 +20,7 @@ const DashboardScreen = () => {
   const ActionButton = ({ icon, label }) => (
     <TouchableOpacity style={styles.actionButton}>
       <View style={styles.actionIconContainer}>
-        <Feather name={icon} size={24} color="#666" />
+        <Feather name={icon} size={24} color="#D1FAE5" />
       </View>
       <Text style={styles.actionButtonText}>{label}</Text>
     </TouchableOpacity>
@@ -28,44 +28,53 @@ const DashboardScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.date}>January 23, 2024</Text>
-        <Text style={styles.day}>Monday</Text>
-      </View>
-
-      <View style={styles.dashboardGrid}>
-        {/* Employees Card */}
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <MaterialIcons name="groups" size={20} color="#FFD700" />
-            <Text style={styles.cardTitle}>Employees</Text>
-          </View>
-          <Text style={styles.totalNumber}>868</Text>
-          <View style={styles.statsRow}>
-            <View>
-              <Text style={styles.statNumber}>800</Text>
-              <Text style={styles.statLabel}>Present</Text>
+      <ImageBackground source={require('../assets/images/bg.png')} style={styles.headerBackground}>
+        <View style={styles.overlayContent}>
+          <View style={styles.header}>
+            <View style={styles.menuPlaceholder} />
+            <View style={styles.locationContainer}>
+              <Feather name="user" size={14} color="#D1FAE5" />
+              <Text style={styles.locationText}>Kattappana Estate</Text>
             </View>
-            <View>
-              <Text style={styles.statNumber}>68</Text>
-              <Text style={styles.statLabel}>Absent</Text>
+          </View>
+
+          <View style={styles.card}>
+            <View style={styles.dateContainer}>
+              <View style={styles.dateWrapper}>
+                <Feather name="calendar" size={16} color="#D1FAE5" />
+                <Text style={styles.dateText}>January 23, 2024</Text>
+              </View>
+              <Text style={styles.dayText}>Monday</Text>
+            </View>
+
+            <View style={styles.cardContainer}>
+              <View style={styles.employeeSection}>
+                <View style={styles.sectionHeader}>
+                  <Feather name="users" size={16} color="#D1FAE5" />
+                  <Text style={styles.sectionTitle}>Employees</Text>
+                </View>
+                <Text style={styles.totalEmployees}>868 <Text style={styles.totalLabel}>Total</Text></Text>
+                <View style={styles.employeeDetails}>
+                  <Text style={styles.presentEmployees}>800 Present</Text>
+                  <Text style={styles.absentEmployees}>68 Absent</Text>
+                </View>
+              </View>
+
+              <View style={styles.walletSection}>
+                <View style={styles.sectionHeader}>
+                  <Feather name="credit-card" size={16} color="#D1FAE5" />
+                  <Text style={styles.sectionTitle}>Wallet bal...</Text>
+                </View>
+                <Text style={styles.walletBalance}>₹1,08568</Text>
+                <TouchableOpacity style={styles.transactionsButton}>
+                  <Text style={styles.transactionsText}>Transactions</Text>
+                  <Feather name="arrow-right" size={16} color="#38A169" />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
-
-        {/* Wallet Balance Card */}
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <MaterialIcons name="account-balance-wallet" size={20} color="#FFD700" />
-            <Text style={styles.cardTitle}>Wallet balance</Text>
-          </View>
-          <Text style={styles.amount}>₹1,08568</Text>
-          <TouchableOpacity style={styles.transactionButton}>
-            <Text style={styles.transactionButtonText}>Transactions</Text>
-            <Feather name="arrow-right" size={16} color="#000" />
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ImageBackground>
 
       {/* Action Buttons */}
       <View style={styles.actionButtonsGrid}>
@@ -80,7 +89,7 @@ const DashboardScreen = () => {
       {/* Harvesting Details */}
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Harvesting Details</Text>
+          <Text style={styles.sectionTitleDark}>Harvesting Details</Text>
           <TouchableOpacity>
             <Text style={styles.viewMore}>View more</Text>
           </TouchableOpacity>
@@ -98,7 +107,7 @@ const DashboardScreen = () => {
       {/* Today's Attendance */}
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Today's Attendance</Text>
+          <Text style={styles.sectionTitleDark}>Today's Attendance</Text>
           <TouchableOpacity>
             <Text style={styles.viewMore}>View more</Text>
           </TouchableOpacity>
@@ -110,7 +119,7 @@ const DashboardScreen = () => {
             <Text
               style={[
                 styles.attendanceStatus,
-                { color: item.status === 'Present' ? '#4CAF50' : '#F44336' },
+                { color: item.status === 'Present' ? '#38A169' : '#DC2626' },
               ]}
             >
               {item.status}
@@ -122,7 +131,7 @@ const DashboardScreen = () => {
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
         <TouchableOpacity style={[styles.navItem, styles.activeNavItem]}>
-          <Feather name="home" size={24} color="#FFD700" />
+          <Feather name="home" size={24} color="#38A169" />
           <Text style={[styles.navText, styles.activeNavText]}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
@@ -147,119 +156,181 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  headerBackground: {
+    width: '100%',
+    height: 450,
+    marginBottom: 20,
+  },
+  overlayContent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+  },
   header: {
-    padding: 16,
-    backgroundColor: '#1B5E20',
-  },
-  date: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  day: {
-    color: '#fff',
-    fontSize: 14,
-    opacity: 0.8,
-  },
-  dashboardGrid: {
-    flexDirection: 'row',
-    padding: 16,
-    gap: 16,
-  },
-  card: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    elevation: 2,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 8,
-  },
-  cardTitle: {
-    fontSize: 16,
-    color: '#333',
-  },
-  totalNumber: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginVertical: 8,
-  },
-  statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 8,
+    alignItems: 'center',
+    paddingTop: 70,
   },
-  statNumber: {
+  menuPlaceholder: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  locationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  locationText: {
+    color: '#D1FAE5',
+    fontSize: 14,
+    marginLeft: 6,
+  },
+  card: {
+    marginTop: 20,
+    backgroundColor: 'rgba(15, 43, 19, 0.5)',
+    borderRadius: 30,
+    padding: 16,
+    height: 280,
+  },
+  dateContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  dateWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dateText: {
+    color: '#D1FAE5',
+    fontSize: 14,
+    marginLeft: 8,
+  },
+  dayText: {
+    color: '#D1FAE5',
+    fontSize: 14,
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 20,
+  },
+  employeeSection: {
+    flex: 1.2,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 12,
+    padding: 20,
+    marginRight: 10,
+    minHeight: 180,
+  },
+  walletSection: {
+    flex: 1.2,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 12,
+    padding: 20,
+    marginLeft: 10,
+    minHeight: 180,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  sectionTitle: {
+    color: '#D1FAE5',
+    fontSize: 14,
+    marginLeft: 8,
+  },
+  sectionTitleDark: {
+    color: '#1F2937',
     fontSize: 18,
     fontWeight: '500',
   },
-  statLabel: {
-    fontSize: 12,
-    color: '#666',
-  },
-  amount: {
-    fontSize: 28,
+  totalEmployees: {
+    color: 'white',
+    fontSize: 24,
     fontWeight: 'bold',
-    marginVertical: 8,
+    marginBottom: 8,
   },
-  transactionButton: {
+  totalLabel: {
+    fontSize: 12,
+    color: '#D1FAE5',
+    fontWeight: 'normal',
+  },
+  employeeDetails: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  presentEmployees: {
+    color: '#D1FAE5',
+    fontSize: 12,
+  },
+  absentEmployees: {
+    color: '#D1FAE5',
+    fontSize: 12,
+  },
+  walletBalance: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  transactionsButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#f0f0f0',
-    padding: 8,
+    justifyContent: 'center',
+    backgroundColor: 'white',
     borderRadius: 8,
-    marginTop: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
   },
-  transactionButtonText: {
-    fontSize: 14,
-    color: '#333',
+  transactionsText: {
+    color: '#38A169',
+    marginRight: 8,
+    fontSize: 12,
   },
   actionButtonsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 16,
     gap: 16,
+    justifyContent: 'space-between',
   },
   actionButton: {
     width: '30%',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(15, 43, 19, 0.1)',
     borderRadius: 12,
     padding: 16,
+    marginBottom: 16,
   },
   actionIconContainer: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: 'rgba(15, 43, 19, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
   },
   actionButtonText: {
     fontSize: 12,
-    color: '#333',
+    color: '#1F2937',
     textAlign: 'center',
   },
   section: {
     padding: 16,
   },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '500',
-  },
   viewMore: {
-    color: '#FFD700',
+    color: '#38A169',
   },
   harvestGrid: {
     flexDirection: 'row',
@@ -268,23 +339,24 @@ const styles = StyleSheet.create({
   },
   harvestCard: {
     width: '47%',
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     borderRadius: 12,
     padding: 16,
   },
   harvestQuantity: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#1F2937',
     marginBottom: 4,
   },
   harvestProduct: {
     fontSize: 14,
-    color: '#666',
+    color: '#6B7280',
   },
   attendanceRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     padding: 16,
     borderRadius: 8,
     marginBottom: 8,
@@ -292,11 +364,12 @@ const styles = StyleSheet.create({
   attendanceId: {
     width: 40,
     fontSize: 14,
-    color: '#666',
+    color: '#6B7280',
   },
   attendanceName: {
     flex: 1,
     fontSize: 16,
+    color: '#1F2937',
   },
   attendanceStatus: {
     fontSize: 14,
@@ -304,10 +377,10 @@ const styles = StyleSheet.create({
   },
   bottomNav: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     paddingVertical: 8,
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: '#E5E7EB',
   },
   navItem: {
     flex: 1,
@@ -316,16 +389,16 @@ const styles = StyleSheet.create({
   },
   activeNavItem: {
     borderBottomWidth: 2,
-    borderBottomColor: '#FFD700',
+    borderBottomColor: '#38A169',
   },
   navText: {
     fontSize: 12,
-    color: '#666',
+    color: '#6B7280',
     marginTop: 4,
   },
   activeNavText: {
-    color: '#FFD700',
+    color: '#38A169',
   },
 });
 
-export default DashboardScreen;
+export default IntegratedDashboard;
