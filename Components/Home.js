@@ -19,8 +19,11 @@ const IntegratedDashboard = () => {
 
   const ActionButton = ({ icon, label }) => (
     <TouchableOpacity style={styles.actionButton}>
-      <View style={styles.actionIconContainer}>
-        <Feather name={icon} size={24} color="#D1FAE5" />
+      <View style={styles.iconWrapper}>
+        <View style={styles.halfCircle} />
+        <View style={styles.actionIconContainer}>
+          <Feather name={icon} size={24} color="#403F32" />
+        </View>
       </View>
       <Text style={styles.actionButtonText}>{label}</Text>
     </TouchableOpacity>
@@ -78,7 +81,7 @@ const IntegratedDashboard = () => {
 
       {/* Action Buttons */}
       <View style={styles.actionButtonsGrid}>
-        <ActionButton icon="calendar" label="Attendance" />
+        <ActionButton icon="calendar" label="Attendance" color='#403F32'/>
         <ActionButton icon="users" label="Emp transfer" />
         <ActionButton icon="package" label="Receive Products" />
         <ActionButton icon="credit-card" label="Petty cash" />
@@ -152,6 +155,15 @@ const IntegratedDashboard = () => {
 };
 
 const styles = StyleSheet.create({
+  halfCircle: {
+    width: 115, // Full width of the circle
+    height: 50, // Half the height of the full circle
+    backgroundColor: '#FFF1B3', // Circle color
+    borderTopLeftRadius: 0, // Radius for top-left
+    borderTopRightRadius: 0, // Radius for top-right
+    borderBottomLeftRadius: 100, // No bottom left radius
+    borderBottomRightRadius: 100, // No bottom right radius
+  },
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
@@ -307,24 +319,22 @@ const styles = StyleSheet.create({
   actionButton: {
     width: '30%',
     alignItems: 'center',
-    backgroundColor: 'rgba(15, 43, 19, 0.1)',
+    backgroundColor: 'rgba(255,252,201, 0.5)',
     borderRadius: 12,
-    padding: 16,
+    padding: 0,
     marginBottom: 16,
   },
   actionIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: 'rgba(15, 43, 19, 0.1)',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 8,
+    justifyContent: 'space-between',
+    marginBottom: 15,
+    marginLeft:3,
   },
   actionButtonText: {
     fontSize: 12,
-    color: '#1F2937',
+    color: '#403F32',
     textAlign: 'center',
+    marginBottom: 15,
   },
   section: {
     padding: 16,
