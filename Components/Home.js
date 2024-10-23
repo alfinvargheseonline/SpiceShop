@@ -31,7 +31,7 @@ const IntegratedDashboard = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <ImageBackground source={require('../assets/images/bg.png')} style={styles.headerBackground}>
+      <View style={styles.headerBackground}>
         <View style={styles.overlayContent}>
           <View style={styles.header}>
             <View style={styles.menuPlaceholder} />
@@ -77,7 +77,7 @@ const IntegratedDashboard = () => {
             </View>
           </View>
         </View>
-      </ImageBackground>
+      </View>
 
       {/* Action Buttons */}
       <View style={styles.actionButtonsGrid}>
@@ -157,7 +157,7 @@ const IntegratedDashboard = () => {
 const styles = StyleSheet.create({
   halfCircle: {
     width: 115, // Full width of the circle
-    height: 50, // Half the height of the full circle
+    height: 60, // Half the height of the full circle
     backgroundColor: '#FFF1B3', // Circle color
     borderTopLeftRadius: 0, // Radius for top-left
     borderTopRightRadius: 0, // Radius for top-right
@@ -166,11 +166,16 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fdfeec',
   },
   headerBackground: {
-    width: '100%',
-    height: 450,
+    width: 420, // Full width of the circle
+    height: 385, // Half the height of the full circle
+    backgroundColor: '#318e5d', // Circle color
+    borderTopLeftRadius: 0, // Radius for top-left
+    borderTopRightRadius: 0, // Radius for top-right
+    borderBottomLeftRadius: 100, // No bottom left radius
+    borderBottomRightRadius: 100,
     marginBottom: 20,
   },
   overlayContent: {
@@ -206,10 +211,10 @@ const styles = StyleSheet.create({
   },
   card: {
     marginTop: 20,
-    backgroundColor: 'rgba(15, 43, 19, 0.5)',
-    borderRadius: 30,
+    backgroundColor: 'rgb(36,104,68, 0.5)',
+    borderRadius: 50,
     padding: 16,
-    height: 280,
+    height: 240,
   },
   dateContainer: {
     flexDirection: 'row',
@@ -233,7 +238,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   employeeSection: {
     flex: 1.2,
@@ -241,7 +246,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 20,
     marginRight: 10,
-    minHeight: 180,
+    minHeight: 10,
   },
   walletSection: {
     flex: 1.2,
@@ -249,7 +254,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 20,
     marginLeft: 10,
-    minHeight: 180,
+    minHeight: 100,
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -313,14 +318,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 16,
-    gap: 16,
+    gap: 10,
     justifyContent: 'space-between',
   },
   actionButton: {
     width: '30%',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,252,201, 0.5)',
-    borderRadius: 12,
+    backgroundColor: '#fbfdd3',
+    borderRadius: 20,
     padding: 0,
     marginBottom: 16,
   },
