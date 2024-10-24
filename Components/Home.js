@@ -32,6 +32,10 @@ const IntegratedDashboard = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerBackground}>
+      <ImageBackground
+        source={require('../assets/images/bg111.png')} // Make sure to add your image in the assets folder
+        style={styles.headerBackground}
+      ></ImageBackground>
         <View style={styles.overlayContent}>
           <View style={styles.header}>
             <View style={styles.menuPlaceholder} />
@@ -171,7 +175,7 @@ const styles = StyleSheet.create({
   headerBackground: {
     width: 420, // Full width of the circle
     height: 385, // Half the height of the full circle
-    backgroundColor: '#318e5d', // Circle color
+    backgroundColor: 'rgba(49, 142, 93, 0.8)', // Circle color
     borderTopLeftRadius: 0, // Radius for top-left
     borderTopRightRadius: 0, // Radius for top-right
     borderBottomLeftRadius: 100, // No bottom left radius
@@ -211,10 +215,11 @@ const styles = StyleSheet.create({
   },
   card: {
     marginTop: 20,
-    backgroundColor: 'rgb(36,104,68, 0.5)',
+    backgroundColor: '#38A165',
     borderRadius: 50,
     padding: 16,
     height: 240,
+    borderRadius:40
   },
   dateContainer: {
     flexDirection: 'row',
