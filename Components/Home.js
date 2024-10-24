@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import Bottom from './Bottom';
 
 const IntegratedDashboard = () => {
   const harvestingData = [
@@ -94,47 +95,7 @@ const IntegratedDashboard = () => {
       </View>
 
       {/* Harvesting Details */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitleDark}>Harvesting Details</Text>
-          <TouchableOpacity>
-            <Text style={styles.viewMore}>View more</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.harvestGrid}>
-          {harvestingData.map((item, index) => (
-            <View key={index} style={styles.harvestCard}>
-              <Text style={styles.harvestQuantity}>{item.quantity}</Text>
-              <Text style={styles.harvestProduct}>{item.product}</Text>
-            </View>
-          ))}
-        </View>
-      </View>
-
-      {/* Today's Attendance */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitleDark}>Today's Attendance</Text>
-          <TouchableOpacity>
-            <Text style={styles.viewMore}>View more</Text>
-          </TouchableOpacity>
-        </View>
-        {attendanceData.map((item) => (
-          <View key={item.id} style={styles.attendanceRow}>
-            <Text style={styles.attendanceId}>{item.id}</Text>
-            <Text style={styles.attendanceName}>{item.name}</Text>
-            <Text
-              style={[
-                styles.attendanceStatus,
-                { color: item.status === 'Present' ? '#38A169' : '#DC2626' },
-              ]}
-            >
-              {item.status}
-            </Text>
-          </View>
-        ))}
-      </View>
-
+      <Bottom/>
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
         <TouchableOpacity style={[styles.navItem, styles.activeNavItem]}>
